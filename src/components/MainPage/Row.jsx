@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import MovieModal from "../MovieModal/MovieModal";
 import { RowContainer, RowPosters, RowPoster, RowTitle } from "./Styled";
-import { styled } from "styled-components";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 export default function Row({ isLarge, title, id, fetchUrl }) {
   const [movies, setMovies] = useState([]);
@@ -33,19 +38,31 @@ export default function Row({ isLarge, title, id, fetchUrl }) {
       )}
       <RowContainer>
         <RowTitle>{title}</RowTitle>
-        <RowPosters>
-          {movies.map((movie) => (
-            <RowPoster
-              key={movie.id}
-              isLarge={isLarge ? "true" : "false"}
-              src={`https://image.tmdb.org/t/p/original/${
-                isLarge ? movie.poster_path : movie.backdrop_path
-              }`}
-              alt={movie.name}
-              onClick={() => handleClick(movie)}
-            />
-          ))}
-        </RowPosters>
+        <Swiper
+          // install Swiper modules
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={50}
+          slidesPerView={5}
+          navigation
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log("slide change")}
+        >
+          <RowPosters>
+            {movies.map((movie) => (
+              <SwiperSlide>
+                <RowPoster
+                  key={movie.id}
+                  isLarge={isLarge ? "true" : "false"}
+                  src={`https://image.tmdb.org/t/p/original/${
+                    isLarge ? movie.poster_path : movie.backdrop_path
+                  }`}
+                  alt={movie.name}
+                  onClick={() => handleClick(movie)}
+                />
+              </SwiperSlide>
+            ))}
+          </RowPosters>
+        </Swiper>
       </RowContainer>
     </>
   );
