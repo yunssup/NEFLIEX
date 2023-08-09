@@ -4,6 +4,7 @@ import MovieModal from "../MovieModal/MovieModal";
 import { RowContainer, RowPosters, RowPoster, RowTitle } from "./Styled";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -52,7 +53,7 @@ export default function Row({ isLarge, title, id, fetchUrl }) {
               <SwiperSlide>
                 <RowPoster
                   key={movie.id}
-                  isLarge={isLarge ? "true" : "false"}
+                  islarge={isLarge ? "true" : "false"}
                   src={`https://image.tmdb.org/t/p/original/${
                     isLarge ? movie.poster_path : movie.backdrop_path
                   }`}
