@@ -2,7 +2,7 @@
   "name": "fe-netflix-clone-coding",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://yunssup.github.io/NEFLIEX",
+  "homepage": "https://yunssup.github.io/NEFLIEX/",
   "type": "module",
   "scripts": {
     "dev": "vite",
